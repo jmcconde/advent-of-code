@@ -12,11 +12,12 @@ with open(os.path.join(os.path.dirname(sys.argv[0]), 'input.txt')) as file:
         right[x] = int(aux[1])
         x = x + 1
 
-left = sorted(left)
-right = sorted(right)
-distance = 0
+map_right = {}
+for key in right:
+    map_right[key] = map_right.get(key, 0) + 1
 
-for x in range(0, 1000):
-    distance += abs(right[x] - left[x])
+result = 0
+for n in left:
+    result += n * map_right.get(n, 0)
 
-print(distance)
+print(result)
